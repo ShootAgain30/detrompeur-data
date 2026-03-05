@@ -91,11 +91,12 @@
         // Lancement au démarrage
         verifierMaj();
 
-        // Enregistrement du Service Worker
+        // Enregistrement du Service Worker avec chemin relatif
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then(() => console.log('Service Worker enregistré !'));
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(() => console.log('Service Worker enregistré !'))
+                    .catch((err) => console.log('Erreur enregistrement : ', err));
             });
         }
     </script>
