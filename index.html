@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="manifest" href="manifest.json">
     <style>
         body { background: #000; color: #fff; font-family: sans-serif; margin: 0; overflow: hidden; }
         #upd-banner { display: none; background: #ff9800; color: #000; text-align: center; padding: 15px; font-weight: bold; cursor: pointer; animation: blink 1s infinite; }
@@ -29,10 +30,10 @@
     </div>
 
     <script>
-        // CONFIGURATION : On remplace par ton vrai lien GitHub
+        // CONFIGURATION
         const URL_DATA = "https://raw.githubusercontent.com/ShootAgain30/detrompeur-data/main/data.json";
 
-        // 1. Vérifier si une mise à jour existe sur GitHub
+        // 1. Vérifier si une mise à jour existe
         async function verifierMaj() {
             try {
                 const res = await fetch(URL_DATA);
@@ -46,7 +47,7 @@
             } catch (e) { console.error("Mode hors-ligne"); }
         }
 
-        // 2. Appliquer la mise à jour (Bouton orange)
+        // 2. Appliquer la mise à jour
         function appliquerMaj() {
             localStorage.setItem('db', JSON.stringify(window.nextData));
             localStorage.setItem('v', window.nextData.version);
@@ -89,6 +90,14 @@
 
         // Lancement au démarrage
         verifierMaj();
+
+        // Enregistrement du Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(() => console.log('Service Worker enregistré !'));
+            });
+        }
     </script>
 </body>
 </html>
