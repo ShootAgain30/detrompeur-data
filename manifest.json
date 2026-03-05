@@ -1,23 +1,22 @@
 {
-  "name": "shootagain30.github.io",
+  "name": "Détrompeur Supply",
   "short_name": "ShootAgain",
   "description": "Une application pour détrompeur Picking et quais.",
   "icons": [
     {
-      "src": "Icon.png",
+      "src": "./Icon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     }
   ],
-  "start_url": "/",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
-  "scope": "/",
+  "scope": "./",
   "orientation": "any",
   "dir": "ltr",
   "lang": "fr",
   "categories": ["productivity"]
 }
-
