@@ -4,7 +4,7 @@
   "description": "Une application pour détrompeur Picking et quais.",
   "icons": [
     {
-      "src": "DS_Icone4_copie.png",
+      "src": "Icon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
@@ -20,3 +20,4 @@
   "lang": "fr",
   "categories": ["productivity"]
 }
+
