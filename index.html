@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        body { background: #000; color: #fff; font-family: sans-serif; margin: 0; overflow: hidden; }
+        #upd-banner { display: none; background: #ff9800; color: #000; text-align: center; padding: 15px; font-weight: bold; cursor: pointer; animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0.7; } }
+        .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 2fr 1fr; height: 95vh; gap: 2px; background: #444; }
+        .cell { background: #000; display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: bold; }
+        input { width: 90%; background: transparent; border: none; color: #fff; font-size: 4rem; text-align: center; outline: none; font-weight: bold; }
+        .yellow { color: yellow; } .blue { color: #4e4eff; } .green { color: #76ff76; } .red { color: #ff3131; }
+        ::placeholder { color: #333; }
+    </style>
+</head>
+<body>
+    <div id="upd-banner" onclick="appliquerMaj()">MISE À JOUR DISPONIBLE (CLIQUEZ ICI)</div>
+    
+    <div class="grid">
+        <div class="cell"><input type="number" id="inP" placeholder="00" oninput="chercherP()"></div>
+        <div class="cell" style="grid-column: 2/4; display: grid; grid-template-columns: 1fr 1fr;">
+            <div class="cell yellow" id="rY">--</div><div class="cell blue" id="rB">--</div>
+            <div class="cell green" id="rG">--</div><div class="cell red" id="rR">--</div>
+        </div>
+        <div class="cell" style="font-size: 1.2rem; color: #666; text-transform: uppercase;">Quai</div>
+        <div class="cell"><input type="number" id="inQ" placeholder="841" oninput="chercherQ()"></div>
+        <div class="cell" id="rQ" style="border-left: 2px dashed #444; font-size: 5rem; color: #fff;">--</div>
+    </div>
+
+    <script>
+        // CONFIGURATION : On remplace par ton vrai lien GitHub
+        const URL_DATA = "https://raw.githubusercontent.com/ShootAgain30/detrompeur-data/main/data.json";
+
+        // 1. Vérifier si une mise à jour existe sur GitHub
+        async function verifierMaj() {
+            try {
+                const res = await fetch(URL_DATA);
+                const data = await res.json();
+                const vLocale = localStorage.getItem('v');
+                
+                if(!vLocale || data.version !== vLocale) {
+                    document.getElementById('upd-banner').style.display = 'block';
+                    window.nextData = data;
+                }
+            } catch (e) { console.error("Mode hors-ligne"); }
+        }
+
+        // 2. Appliquer la mise à jour (Bouton orange)
+        function appliquerMaj() {
+            localStorage.setItem('db', JSON.stringify(window.nextData));
+            localStorage.setItem('v', window.nextData.version);
+            alert("Mise à jour réussie !");
+            location.reload();
+        }
+
+        // 3. Logique de recherche Picking
+        function chercherP() {
+            const val = document.getElementById('inP').value;
+            const db = JSON.parse(localStorage.getItem('db'));
+            if(db && db.picking[val]) {
+                const res = db.picking[val];
+                document.getElementById('rY').innerText = res[0];
+                document.getElementById('rB').innerText = res[1];
+                document.getElementById('rG').innerText = res[2];
+                document.getElementById('rR').innerText = res[3];
+            } else {
+                resetP();
+            }
+        }
+
+        // 4. Logique de recherche Quai
+        function chercherQ() {
+            const val = document.getElementById('inQ').value;
+            const db = JSON.parse(localStorage.getItem('db'));
+            if(db && db.quais[val]) {
+                document.getElementById('rQ').innerText = db.quais[val];
+            } else {
+                document.getElementById('rQ').innerText = "--";
+            }
+        }
+
+        function resetP() {
+            document.getElementById('rY').innerText = "--";
+            document.getElementById('rB').innerText = "--";
+            document.getElementById('rG').innerText = "--";
+            document.getElementById('rR').innerText = "--";
+        }
+
+        // Lancement au démarrage
+        verifierMaj();
+    </script>
+</body>
+</html>
