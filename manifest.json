@@ -1,16 +1,22 @@
 {
-  "name": "Detrompeur Supply",
-  "short_name": "Detrompeur",
-  "description": "Application de gestion des codes picking et quais pour la logistique.",
-  "start_url": "https://shootagain30.github.io/detrompeur-data/",
+  "name": "shootagain30.github.io",
+  "short_name": "ShootAgain",
+  "description": "Une application pour détrompeur Picking et quais.",
+  "icons": [
+    {
+      "src": "DS_Icone4_copie.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
-  "icons": [
-    {
-      "src": "https://cdn-icons-png.flaticon.com/512/2830/2830284.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
+  "scope": "/",
+  "orientation": "any",
+  "dir": "ltr",
+  "lang": "fr",
+  "categories": ["productivity"]
 }
