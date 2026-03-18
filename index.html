@@ -119,22 +119,26 @@ function searchPicking(colIdx){
       .catch(e => console.log('SW erreur', e));
   }
 </script>
-  <script>
-  // === Champ Quai ===
-  const inputQuai = document.getElementById('inputQuai');
-  inputQuai.addEventListener('change', () => {
-    searchQuai();        // calcule et affiche la réponse
-    inputQuai.blur();    // ferme le clavier
-  });
+ <script>
+// Champ Quai
+const inputQuai = document.getElementById('inputQuai');
+inputQuai.addEventListener('input', () => {
+  searchQuai(); // calcule et affiche
+});
+inputQuai.addEventListener('blur', () => {
+  inputQuai.blur(); // ferme le clavier si encore ouvert (sécurité)
+});
 
-  // === Champs Picking ===
-  for(let i=0; i<5; i++){
-    const input = document.getElementById('p'+i);
-    input.addEventListener('change', () => {
-      searchPicking(i);  // calcule et affiche la réponse
-      input.blur();      // ferme le clavier
-    });
-  }
+// Champs Picking
+for(let i=0;i<5;i++){
+  const input = document.getElementById('p'+i);
+  input.addEventListener('input', () => {
+    searchPicking(i); // calcule et affiche
+  });
+  input.addEventListener('blur', () => {
+    input.blur(); // ferme le clavier
+  });
+}
 </script>
 </body>
 </html>
