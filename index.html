@@ -110,5 +110,12 @@ function searchPicking(colIdx){
   for(let i=0;i<5;i++)document.getElementById("r"+i).innerHTML=foundRow[i];
 }
 </script>
+  <script>
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(() => console.log('SW enregistré'))
+      .catch(e => console.log('SW erreur', e));
+  }
+</script>
 </body>
 </html>
