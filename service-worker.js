@@ -1,23 +1,19 @@
-const CACHE_NAME = 'detrompeur-v1';
-const ASSETS = [
+const CACHE_NAME = 'detrompeurs-v1';
+const FILES = [
   './',
   './index.html',
   './manifest.json',
   './Icon.png'
 ];
 
-self.addEventListener('install', (e) => {
+self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
+    caches.open(CACHE_NAME).then(cache => cache.addAll(FILES))
   );
 });
 
-self.addEventListener('activate', (e) => {
-  e.waitUntil(self.clients.claim());
-});
-
-self.addEventListener('fetch', (e) => {
+self.addEventListener('fetch', e => {
   e.respondWith(
-    caches.match(e.request).then((res) => res || fetch(e.request))
+    caches.match(e.request).then(response => response || fetch(e.request))
   );
 });
