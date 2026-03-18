@@ -3,7 +3,8 @@ const FILES = [
   './',
   './index.html',
   './manifest.json',
-  './Icon.png'
+  './Icon-192.png',
+  './Icon-512.png'
 ];
 
 self.addEventListener('install', e => {
