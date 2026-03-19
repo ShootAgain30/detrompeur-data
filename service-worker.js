@@ -1,8 +1,8 @@
 const CACHE_NAME = 'detrompeurs-v2';
 const FILES = [
   './',
-  './index.html',
-  './manifest.json',
+  'index.html',
+  'manifest.json',
   'Icon-192.png',
   'Icon-512.png'
 ];
