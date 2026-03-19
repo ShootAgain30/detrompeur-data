@@ -1,6 +1,6 @@
 {
   "name": "Détrompeurs Carrefour",
-  "short_name": "Détrompeurs",
+  "short_name": "DS",
   "start_url": "/detrompeur-data/",
   "display": "standalone",
   "background_color": "#111111",
