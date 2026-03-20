@@ -121,13 +121,28 @@ function goToPage(n){
   if(n===1) document.getElementById('arrowHint').classList.add('hidden');
 }
 
-document.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX;});
+let touchStartX=0;
+let touchCurrentX=0;
+
+document.addEventListener('touchstart',e=>{
+  touchStartX=e.changedTouches[0].screenX;
+});
+
+document.addEventListener('touchmove',e=>{
+  touchCurrentX=e.changedTouches[0].screenX;
+  const diff=touchStartX-touchCurrentX;
+  if(currentPage===0) document.getElementById('wrapper').style.transform='translateX(-'+Math.max(0,diff)+'px)';
+  if(currentPage===1) document.getElementById('wrapper').style.transform='translateX(calc(-100vw + '+Math.max(0,-diff)+'px))';
+});
+
 document.addEventListener('touchend',e=>{
-  touchEndX=e.changedTouches[0].screenX;
-  const diff=touchStartX-touchEndX;
-  if(Math.abs(diff)>50){
+  const diff=touchStartX-e.changedTouches[0].screenX;
+  document.getElementById('wrapper').style.transform='';
+  if(Math.abs(diff)>80){
     if(diff>0&&currentPage===0) goToPage(1);
     if(diff<0&&currentPage===1) goToPage(0);
+  } else {
+    goToPage(currentPage);
   }
 });
 
