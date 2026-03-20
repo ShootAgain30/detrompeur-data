@@ -173,8 +173,9 @@ function searchPicking(colIdx){
   for(const row of pickingData){if(row[colIdx]===val){foundRow=row;break;}}
   if(!foundRow){for(let i=0;i<5;i++)document.getElementById("r"+i).innerHTML='<span class="dim">—</span>';return;}
   for(let i=0;i<5;i++)document.getElementById("r"+i).innerHTML=foundRow[i];
-  document.getElementById("p"+colIdx).blur();
-  setTimeout(()=>document.querySelector(".page").scrollTop=0, 500);
+  for(let i=0;i<5;i++)document.getElementById("r"+i).innerHTML=foundRow[i];
+document.getElementById("p"+colIdx).blur();
+setTimeout(()=>document.getElementById("page1").scrollTop=0,500);
 }
 
 if('serviceWorker' in navigator){
