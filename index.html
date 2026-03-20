@@ -92,7 +92,7 @@ app-wrapper.page2{transform:translateX(-100vw)}
     <div class="panel">
       <div class="panel-title">Quais &amp; Travées</div>
       <input class="quai-input" type="text" inputmode="numeric" id="inputQuai" placeholder="N° quai ou travée..." oninput="searchQuai()" onclick="resetQuai()"/>
-      <div class="result-box" id="resultQuai"><span class="rn">Saisissez un quai ou une travée</span></div>
+      <div class="result-box" id="resultQuai"><span class="rn">Code Détrompeur</span></div>
     </div>
     <div class="signature">Développé par Bernard V</div>
   </div>
@@ -143,7 +143,7 @@ function searchQuai(){
 
 function resetQuai(){
   document.getElementById("inputQuai").value="";
-  document.getElementById("resultQuai").innerHTML='<span class="rn">Saisissez un quai ou une travée</span>';
+  document.getElementById("resultQuai").innerHTML='<span class="rn">Code Détrompeur</span>';
 }
 
 function handlePickClick(idx){
