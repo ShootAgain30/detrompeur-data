@@ -174,7 +174,7 @@ function searchPicking(colIdx){
   if(!foundRow){for(let i=0;i<5;i++)document.getElementById("r"+i).innerHTML='<span class="dim">—</span>';return;}
   for(let i=0;i<5;i++)document.getElementById("r"+i).innerHTML=foundRow[i];
   document.getElementById("p"+colIdx).blur();
-setTimeout(()=>document.getElementById("page1").scrollTop=0, 300);
+setTimeout(()=>document.querySelector(".page").scrollTop=0, 300);
 }
 
 if('serviceWorker' in navigator){
