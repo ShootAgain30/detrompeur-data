@@ -1,4 +1,4 @@
-const CACHE_NAME = 'detrompeurs-V2.1';
+const CACHE_NAME = 'detrompeurs-V1.9';
 const FILES = [
   './',
   'index.html',
