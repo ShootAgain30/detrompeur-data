@@ -183,6 +183,11 @@ if('serviceWorker' in navigator){
 }
 
 document.getElementById("p0").focus();
+  window.addEventListener('resize',()=>{
+  if(currentPage===0){
+    setTimeout(()=>document.getElementById("page1").scrollTop=0,100);
+  }
+});
 </script>
 </body>
 </html>
