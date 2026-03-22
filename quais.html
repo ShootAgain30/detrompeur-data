@@ -88,7 +88,7 @@ if('serviceWorker' in navigator){
     .catch(e=>console.log('SW err',e));
 }
 
-document.getElementById("inputQuai").focus();
+setTimeout(()=>document.getElementById("inputQuai").focus(),500);
 </script>
 </body>
 </html>
