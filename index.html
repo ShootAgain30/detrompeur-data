@@ -243,11 +243,15 @@ function renderMemories(){
 
 renderMemories();
 
-  window.addEventListener('resize',()=>{
-  if(currentPage===1){
-    document.getElementById('wrapper').style.transform='translateX(-100vw)';
-  }
-});
+  if(window.visualViewport){
+  window.visualViewport.addEventListener('resize',()=>{
+    if(currentPage===1){
+      document.getElementById('wrapper').style.transform='translateX(-100vw)';
+    } else {
+      document.getElementById('wrapper').style.transform='translateX(0)';
+    }
+  });
+}
 
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('service-worker.js')
