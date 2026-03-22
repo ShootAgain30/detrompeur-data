@@ -278,6 +278,14 @@ function toggleMem(idx){
   }
 }
 
+document.addEventListener('click',function(e){
+  const header=e.target.closest('.mem-header');
+  if(header){
+    const idx=parseInt(header.onclick.toString().match(/\d+/)[0]);
+    toggleMem(idx);
+  }
+});
+
 function saveMemory(){
   const msg=document.getElementById('memMsg');
   const blanc=document.getElementById('r0').innerText.trim();
