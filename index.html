@@ -58,11 +58,7 @@ body{background:#111;font-family:Arial,sans-serif;overflow:hidden;height:100dvh}
 .mem-cell.c2{border-color:#60a5fa;color:#60a5fa}
 .mem-cell.c3{border-color:#4ade80;color:#4ade80}
 .mem-cell.c4{border-color:#f87171;color:#f87171}
-.arrow-hint{position:fixed;right:2vw;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:1vw;transition:opacity 0.5s;z-index:100}
-.arrow-hint.hidden{opacity:0;pointer-events:none;display:none}
-.arrow-hint span{color:#555;font-size:3vw}
-.arrow-icon{width:8vw;height:8vw;border-right:3px solid #444;border-top:3px solid #444;transform:rotate(45deg);animation:pulse 1.5s infinite}
-@keyframes pulse{0%,100%{opacity:.3;transform:rotate(45deg) translate(0,0)}50%{opacity:1;transform:rotate(45deg) translate(1vw,-1vw)}}
+
 .dots{position:fixed;bottom:5vw;left:0;right:0;display:flex;justify-content:center;gap:3vw;z-index:100}
 .dot{width:2.5vw;height:2.5vw;border-radius:50%;background:#444;transition:background 0.3s}
 .dot.active{background:#fff}
@@ -133,7 +129,7 @@ function goToPage(n){
   document.getElementById('dot0').classList.toggle('active',n===0);
   document.getElementById('dot1').classList.toggle('active',n===1);
   if(n===1){
-    document.getElementById('arrowHint').classList.add('hidden');
+   
     setTimeout(()=>document.getElementById("inputQuai").focus(),450);
   } else {
     setTimeout(()=>document.getElementById("p0").focus(),450);
