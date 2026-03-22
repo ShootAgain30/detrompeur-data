@@ -241,6 +241,7 @@ function renderMemories(){
   if(memories.length===0){list.innerHTML='';return;}
   let html='';
   memories.forEach((codes,idx)=>{
+  const memIdx=idx;
     html+=`<div class="mem-item">
       <div class="mem-header" onclick="toggleMem(${idx})">
         <div class="mem-blanc">${codes[0]}</div>
