@@ -257,8 +257,12 @@ function renderMemories(){
     html+=`</div></div></div>`;
   });
   list.innerHTML=html;
-  memories.forEach((codes,idx)=>{
-    document.getElementById('memhead'+idx).addEventListener('click',()=>toggleMem(idx));
+ list.addEventListener('click',function(e){
+    const header=e.target.closest('.mem-header');
+    if(header){
+      const idx=header.id.replace('memhead','');
+      toggleMem(parseInt(idx));
+    }
   });
 }
 
