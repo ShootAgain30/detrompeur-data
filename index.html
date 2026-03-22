@@ -209,7 +209,7 @@ function saveMemory(){
   for(let i=0;i<5;i++) codes.push(document.getElementById('r'+i).innerText.trim());
   const dejaPresent=memories.some(m=>m[0]===codes[0]);
   if(dejaPresent){
-    if(navigator.vibrate) navigator.vibrate(100);
+    if(navigator.vibrate) navigator.vibrate(500);
     return;
   }
   memories.push(codes);
