@@ -45,8 +45,9 @@ body.go-right{animation:slideToLeft 0.4s ease forwards}
 .btn-memory{flex:1;background:#2e2e2e;border:1px solid #fff;border-radius:3vw;color:#fff;font-size:4vw;font-weight:bold;padding:3vw;text-align:center;cursor:pointer}
 .btn-reset{flex:1;background:#2e2e2e;border:1px solid #f87171;border-radius:3vw;color:#f87171;font-size:4vw;font-weight:bold;padding:3vw;text-align:center;cursor:pointer}
 .memory-msg{color:#facc15;font-size:3.5vw;text-align:center;margin-bottom:2vw}
-.mem-line{display:grid;grid-template-columns:repeat(5,1fr);gap:1.5vw;margin-bottom:2vw}
-.mem-cell{border-radius:2vw;padding:2vw 1vw;font-size:5vw;font-weight:bold;text-align:center;border-width:1px;border-style:solid;background:#0d0d0d}
+.mem-cell{border-radius:2vw;padding:2vw 1vw;font-size:5vw;font-weight:bold;text-align:center;border-width:1px;border-style:solid;background:#0d0d0d;transition:transform 0.3s,opacity 0.3s}
+.mem-line.collapsed .mem-cell.c1,.mem-line.collapsed .mem-cell.c2,.mem-line.collapsed .mem-cell.c3,.mem-line.collapsed .mem-cell.c4{transform:translateX(-100%);opacity:0;position:absolute}
+.mem-line{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:1.5vw;margin-bottom:2vw}
 .mem-cell.c0{border-color:#fff;color:#fff}
 .mem-cell.c1{border-color:#facc15;color:#facc15}
 .mem-cell.c2{border-color:#60a5fa;color:#60a5fa}
