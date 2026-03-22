@@ -50,17 +50,14 @@ body{background:#111;font-family:Arial,sans-serif;overflow:hidden;height:100dvh}
 .memory-buttons{display:flex;gap:3vw;margin-bottom:3vw}
 .btn-memory{flex:1;background:#2e2e2e;border:1px solid #fff;border-radius:3vw;color:#fff;font-size:4vw;font-weight:bold;padding:3vw;text-align:center;cursor:pointer}
 .btn-reset{flex:1;background:#2e2e2e;border:1px solid #f87171;border-radius:3vw;color:#f87171;font-size:4vw;font-weight:bold;padding:3vw;text-align:center;cursor:pointer}
-.memory-msg{color:#facc15;font-size:3.5vw;text-align:center;margin-bottom:3vw;min-height:5vw}
-.mem-item{background:#0d0d0d;border-radius:3vw;margin-bottom:2vw;overflow:hidden;max-height:0;opacity:0;transition:max-height 0.3s,opacity 0.3s}
-.mem-item.used{max-height:200vw;opacity:1}
-.mem-header{display:flex;align-items:center;padding:3vw 4vw;cursor:pointer}
-.mem-blanc{flex:1;border:1px solid #fff;border-radius:3vw;padding:3vw 2vw;font-size:7vw;font-weight:bold;text-align:center;color:#fff;background:#2e2e2e}
-.mem-arrow{color:#555;font-size:6vw;margin-left:3vw;font-weight:bold}
-.mem-details{display:none;padding:0 4vw 3vw}
-.mem-details.open{display:block}
-.mem-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2vw;margin-top:2vw}
-.mem-cell-label{font-size:2.5vw;font-weight:bold;text-align:center;margin-bottom:1vw}
-.mem-cell{border-radius:3vw;padding:2vw;font-size:5vw;font-weight:bold;text-align:center;border-top-width:1vw;border-top-style:solid;border-left:1px solid #333;border-right:1px solid #333;border-bottom:1px solid #333;background:#1a1a1a}
+.memory-msg{color:#facc15;font-size:3.5vw;text-align:center;margin-bottom:2vw;min-height:5vw}
+.mem-line{display:grid;grid-template-columns:repeat(5,1fr);gap:1.5vw;margin-bottom:2vw}
+.mem-cell{border-radius:2vw;padding:2vw 1vw;font-size:5vw;font-weight:bold;text-align:center;border-width:1px;border-style:solid;background:#0d0d0d}
+.mem-cell.c0{border-color:#fff;color:#fff}
+.mem-cell.c1{border-color:#facc15;color:#facc15}
+.mem-cell.c2{border-color:#60a5fa;color:#60a5fa}
+.mem-cell.c3{border-color:#4ade80;color:#4ade80}
+.mem-cell.c4{border-color:#f87171;color:#f87171}
 .arrow-hint{position:fixed;right:2vw;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:1vw;transition:opacity 0.5s;z-index:100}
 .arrow-hint.hidden{opacity:0;pointer-events:none}
 .arrow-hint span{color:#555;font-size:3vw}
@@ -100,76 +97,7 @@ body{background:#111;font-family:Arial,sans-serif;overflow:hidden;height:100dvh}
         <div class="btn-reset" onclick="resetMemory()">RESET</div>
       </div>
       <div class="memory-msg" id="memMsg"></div>
-      <div class="mem-item" id="mem0">
-        <div class="mem-header" onclick="toggleMem(0);event.stopPropagation()">
-          <div class="mem-blanc" id="mb0">—</div>
-          <div class="mem-arrow" id="ma0">›</div>
-        </div>
-        <div class="mem-details" id="md0">
-          <div class="mem-row">
-            <div><div class="mem-cell-label" style="color:#facc15">Jaune</div><div class="mem-cell" id="mc0j" style="border-top-color:#facc15;color:#facc15">—</div></div>
-            <div><div class="mem-cell-label" style="color:#60a5fa">Bleu</div><div class="mem-cell" id="mc0b" style="border-top-color:#60a5fa;color:#60a5fa">—</div></div>
-            <div><div class="mem-cell-label" style="color:#4ade80">Vert</div><div class="mem-cell" id="mc0v" style="border-top-color:#4ade80;color:#4ade80">—</div></div>
-            <div><div class="mem-cell-label" style="color:#f87171">Rouge</div><div class="mem-cell" id="mc0r" style="border-top-color:#f87171;color:#f87171">—</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="mem-item" id="mem1">
-        <div class="mem-header" onclick="toggleMem(1);event.stopPropagation()">
-          <div class="mem-blanc" id="mb1">—</div>
-          <div class="mem-arrow" id="ma1">›</div>
-        </div>
-        <div class="mem-details" id="md1">
-          <div class="mem-row">
-            <div><div class="mem-cell-label" style="color:#facc15">Jaune</div><div class="mem-cell" id="mc1j" style="border-top-color:#facc15;color:#facc15">—</div></div>
-            <div><div class="mem-cell-label" style="color:#60a5fa">Bleu</div><div class="mem-cell" id="mc1b" style="border-top-color:#60a5fa;color:#60a5fa">—</div></div>
-            <div><div class="mem-cell-label" style="color:#4ade80">Vert</div><div class="mem-cell" id="mc1v" style="border-top-color:#4ade80;color:#4ade80">—</div></div>
-            <div><div class="mem-cell-label" style="color:#f87171">Rouge</div><div class="mem-cell" id="mc1r" style="border-top-color:#f87171;color:#f87171">—</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="mem-item" id="mem2">
-        <div class="mem-header" onclick="toggleMem(2);event.stopPropagation()">
-          <div class="mem-blanc" id="mb2">—</div>
-          <div class="mem-arrow" id="ma2">›</div>
-        </div>
-        <div class="mem-details" id="md2">
-          <div class="mem-row">
-            <div><div class="mem-cell-label" style="color:#facc15">Jaune</div><div class="mem-cell" id="mc2j" style="border-top-color:#facc15;color:#facc15">—</div></div>
-            <div><div class="mem-cell-label" style="color:#60a5fa">Bleu</div><div class="mem-cell" id="mc2b" style="border-top-color:#60a5fa;color:#60a5fa">—</div></div>
-            <div><div class="mem-cell-label" style="color:#4ade80">Vert</div><div class="mem-cell" id="mc2v" style="border-top-color:#4ade80;color:#4ade80">—</div></div>
-            <div><div class="mem-cell-label" style="color:#f87171">Rouge</div><div class="mem-cell" id="mc2r" style="border-top-color:#f87171;color:#f87171">—</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="mem-item" id="mem3">
-        <div class="mem-header" onclick="toggleMem(3);event.stopPropagation()">
-          <div class="mem-blanc" id="mb3">—</div>
-          <div class="mem-arrow" id="ma3">›</div>
-        </div>
-        <div class="mem-details" id="md3">
-          <div class="mem-row">
-            <div><div class="mem-cell-label" style="color:#facc15">Jaune</div><div class="mem-cell" id="mc3j" style="border-top-color:#facc15;color:#facc15">—</div></div>
-            <div><div class="mem-cell-label" style="color:#60a5fa">Bleu</div><div class="mem-cell" id="mc3b" style="border-top-color:#60a5fa;color:#60a5fa">—</div></div>
-            <div><div class="mem-cell-label" style="color:#4ade80">Vert</div><div class="mem-cell" id="mc3v" style="border-top-color:#4ade80;color:#4ade80">—</div></div>
-            <div><div class="mem-cell-label" style="color:#f87171">Rouge</div><div class="mem-cell" id="mc3r" style="border-top-color:#f87171;color:#f87171">—</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="mem-item" id="mem4">
-        <div class="mem-header" onclick="toggleMem(4);event.stopPropagation()">
-          <div class="mem-blanc" id="mb4">—</div>
-          <div class="mem-arrow" id="ma4">›</div>
-        </div>
-        <div class="mem-details" id="md4">
-          <div class="mem-row">
-            <div><div class="mem-cell-label" style="color:#facc15">Jaune</div><div class="mem-cell" id="mc4j" style="border-top-color:#facc15;color:#facc15">—</div></div>
-            <div><div class="mem-cell-label" style="color:#60a5fa">Bleu</div><div class="mem-cell" id="mc4b" style="border-top-color:#60a5fa;color:#60a5fa">—</div></div>
-            <div><div class="mem-cell-label" style="color:#4ade80">Vert</div><div class="mem-cell" id="mc4v" style="border-top-color:#4ade80;color:#4ade80">—</div></div>
-            <div><div class="mem-cell-label" style="color:#f87171">Rouge</div><div class="mem-cell" id="mc4r" style="border-top-color:#f87171;color:#f87171">—</div></div>
-          </div>
-        </div>
-      </div>
+      <div id="memList"></div>
     </div>
     <div class="signature">Développé par Bernard V</div>
   </div>
@@ -222,7 +150,6 @@ document.addEventListener('touchstart',e=>{
 });
 document.addEventListener('touchend',e=>{
   if(e.target.closest('.mem-header')) return;
-  
   touchEndX=e.changedTouches[0].screenX;
   const diff=touchStartX-touchEndX;
   if(Math.abs(diff)>50){
@@ -271,18 +198,6 @@ function searchPicking(colIdx){
   document.getElementById("p"+colIdx).blur();
 }
 
-function toggleMem(idx){
-  const det=document.getElementById('md'+idx);
-  const arrow=document.getElementById('ma'+idx);
-  if(det.classList.contains('open')){
-    det.classList.remove('open');
-    arrow.innerText='›';
-  } else {
-    det.classList.add('open');
-    arrow.innerText='‹';
-  }
-}
-
 function saveMemory(){
   const msg=document.getElementById('memMsg');
   const blanc=document.getElementById('r0').innerText.trim();
@@ -292,7 +207,7 @@ function saveMemory(){
     setTimeout(()=>msg.innerText='',2000);
     return;
   }
-  if(memories.length>=5){
+  if(memories.length>=10){
     msg.style.color='#f87171';
     msg.innerText='Vous avez atteint le nombre maximum de mémoires !';
     setTimeout(()=>msg.innerText='',3000);
@@ -305,37 +220,31 @@ function saveMemory(){
   msg.style.color='#4ade80';
   msg.innerText='Mémorisé !';
   setTimeout(()=>msg.innerText='',2000);
-  loadMemories();
+  renderMemories();
 }
 
 function resetMemory(){
   memories=[];
   localStorage.setItem('pickingMemories',JSON.stringify(memories));
   document.getElementById('memMsg').innerText='';
-  loadMemories();
+  renderMemories();
 }
 
-function loadMemories(){
-  const suffixes=['j','b','v','r'];
-  for(let i=0;i<5;i++){
-    const item=document.getElementById('mem'+i);
-    if(i<memories.length){
-      const codes=memories[i];
-      item.classList.add('used');
-      document.getElementById('mb'+i).innerText=codes[0];
-      document.getElementById('mc'+i+'j').innerText=codes[1];
-      document.getElementById('mc'+i+'b').innerText=codes[2];
-      document.getElementById('mc'+i+'v').innerText=codes[3];
-      document.getElementById('mc'+i+'r').innerText=codes[4];
-    } else {
-      item.classList.remove('used');
-      document.getElementById('md'+i).classList.remove('open');
-      document.getElementById('ma'+i).innerText='›';
+function renderMemories(){
+  const list=document.getElementById('memList');
+  if(memories.length===0){list.innerHTML='';return;}
+  let html='';
+  memories.forEach(codes=>{
+    html+='<div class="mem-line">';
+    for(let i=0;i<5;i++){
+      html+='<div class="mem-cell c'+i+'">'+codes[i]+'</div>';
     }
-  }
+    html+='</div>';
+  });
+  list.innerHTML=html;
 }
 
-loadMemories();
+renderMemories();
 
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('service-worker.js')
