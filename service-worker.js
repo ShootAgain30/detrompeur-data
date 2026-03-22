@@ -1,12 +1,12 @@
-const CACHE_NAME = 'detrompeurs-V2.1.5';
+const CACHE_NAME = 'detrompeurs-V2.1.6';
 const FILES = [
-  './',
+  '/',
   'index.html',
+  'quais.html',
   'manifest.json',
   'Icon-192.png',
   'Icon-512.png'
 ];
-
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE_NAME)
@@ -14,7 +14,6 @@ self.addEventListener('install', e => {
       .then(() => self.skipWaiting())
   );
 });
-
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(keys =>
@@ -25,7 +24,6 @@ self.addEventListener('activate', e => {
     ).then(() => self.clients.claim())
   );
 });
-
 self.addEventListener('fetch', e => {
   e.respondWith(
     caches.match(e.request)
