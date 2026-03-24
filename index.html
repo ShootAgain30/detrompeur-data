@@ -96,7 +96,7 @@ body{background:#111;font-family:Arial,sans-serif;min-height:100dvh;padding:4vw;
   <div id="memList"></div>
 </div>
 
-<div class="signature">Développé par Bernard V</div>
+<div class="signature">Développé par Bernard V <span id="app-version"></span></div>
 
 <div class="nav-dot">
   <div class="dot active"></div>
@@ -161,11 +161,7 @@ function formatAddress(raw){
     if(last===''||last.length<2) {
       if(last==='') parts[parts.length-1]='00';
       else parts[parts.length-1]=last.padStart(2,'0');
-      if(parts[parts.length-1]!=='00') {}
-      else parts[parts.length-1]='00';
     }
-    if(parts.length>=2&&parts[parts.length-1]!=='00'&&last.length===2){}
-    else if(parts[parts.length-1]==='00'){}
   }
   const lastPart=parts[parts.length-1];
   if(lastPart!=='00'&&!raw.includes(sep+'00')){
@@ -249,13 +245,27 @@ document.getElementById('addrInput').addEventListener('keydown',e=>{
   if(e.key==='Enter') confirmMemory();
 });
 
+// GESTION DU SERVICE WORKER
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('service-worker.js')
     .then(()=>console.log('SW ok'))
     .catch(e=>console.log('SW err',e));
 }
 
+// FONCTION POUR AFFICHER LA VERSION
+async function displayVersion() {
+  try {
+    const response = await fetch('./service-worker.js'); 
+    const text = await response.text();
+    const match = text.match(/CACHE_NAME\s*=\s*['"]detrompeurs-(V[\d.]+)['"]/);
+    if (match && match[1]) {
+      document.getElementById('app-version').textContent = `- ${match[1]}`;
+    }
+  } catch (e) { console.log("Erreur version", e); }
+}
+
 renderMemories();
+displayVersion();
 document.getElementById("p0").focus();
 </script>
 </body>
