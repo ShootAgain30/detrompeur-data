@@ -45,7 +45,7 @@ body.go-left{animation:slideToRight 0.4s ease forwards}
   <div class="result-box" id="resultQuai"><span class="rn">Code Détrompeur</span></div>
 </div>
 
-<div class="signature">Développé par Bernard V</div>
+<div class="signature">Développé par Bernard V <span id="app-version"></span></div>
 
 <div class="nav-dot">
   <div class="dot" onclick="goToPicking()"></div>
@@ -83,12 +83,26 @@ function resetQuai(){
   document.getElementById("resultQuai").innerHTML='<span class="rn">Code Détrompeur</span>';
 }
 
+// GESTION DU SERVICE WORKER
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('service-worker.js')
     .then(()=>console.log('SW ok'))
     .catch(e=>console.log('SW err',e));
 }
 
+// FONCTION POUR AFFICHER LA VERSION
+async function displayVersion() {
+  try {
+    const response = await fetch('./service-worker.js'); 
+    const text = await response.text();
+    const match = text.match(/CACHE_NAME\s*=\s*['"]detrompeurs-(V[\d.]+)['"]/);
+    if (match && match[1]) {
+      document.getElementById('app-version').textContent = `- ${match[1]}`;
+    }
+  } catch (e) { console.log("Erreur version", e); }
+}
+
+displayVersion();
 setTimeout(()=>document.getElementById("inputQuai").focus(),500);
 </script>
 </body>
