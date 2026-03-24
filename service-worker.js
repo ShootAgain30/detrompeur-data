@@ -4,8 +4,8 @@ const FILES = [
   'index.html',
   'quais.html',
   'manifest.json',
-  'Icon-192.png',
-  'Icon-512.png'
+  'Icon-192-v2.png',
+  'Icon-512-v2.png'
 ];
 self.addEventListener('install', e => {
   e.waitUntil(
